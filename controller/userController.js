@@ -13,9 +13,7 @@ const getAllUser = catchAsync(async (req, res, next) => {
         },
     };
 
-    // Kiểm tra và thêm role vào whereClause nếu có
     if (roleQuery) {
-        // Kiểm tra giá trị roleQuery có hợp lệ không
         const validRoles = ['0', '1'];
         if (!validRoles.includes(roleQuery)) {
             return res.status(400).json({
@@ -27,13 +25,15 @@ const getAllUser = catchAsync(async (req, res, next) => {
         whereClause.role = roleQuery;
     }
 
-    // Tìm kiếm user
     const users = await user.findAndCountAll({
         where: whereClause,
+        include: [{
+            model: store,
+            attributes: ['id', 'name', 'email', 'phone_number', 'address'],  // Các trường bạn muốn lấy từ bảng store
+        }],
         attributes: { exclude: ['password_hash'] },
     });
 
-    // Trả về kết quả
     return res.status(200).json({
         status: 'success',
         data: users,
