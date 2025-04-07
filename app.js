@@ -1,6 +1,8 @@
 require('dotenv').config({ path: `${process.cwd()}/.env` });
 const express = require('express');
 
+const { swaggerDocs, swaggerUi } = require('./swagger/swagger-config');
+
 const authRouter = require('./route/authRoute');
 const storeRouter = require('./route/storeRoute');
 const userRouter = require('./route/userRoute');
@@ -11,6 +13,10 @@ const globalErrorHandler = require('./controller/errorController');
 const app = express();
 
 app.use(express.json());
+
+// Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 
 // all routes will be here
 app.use('/api/v1/auth', authRouter);

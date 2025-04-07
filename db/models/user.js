@@ -79,7 +79,7 @@ const user = sequelize.define('user', {
     allowNull: true,
   },
   role: {
-    type: DataTypes.ENUM('0', '1'),
+    type: DataTypes.ENUM('0', '1', '2'),
     allowNull: true,
   },
   is_verified: {

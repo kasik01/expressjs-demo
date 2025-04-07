@@ -61,14 +61,13 @@ const updateStore = catchAsync(async (req, res, next) => {
 const deleteStore = catchAsync(async (req, res, next) => {
     // const owner_id = req.user.id;
     const storeId = req.params.id;
-    const body = req.body;
 
-    const result = await project.findOne({
+    const result = await store.findOne({
         where: { id: storeId },
     });
 
     if (!result) {
-        return next(new AppError('Invalid project id', 400));
+        return next(new AppError('Invalid store id', 400));
     }
 
     await result.destroy();
