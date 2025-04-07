@@ -43,7 +43,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.ENUM('0', '1'),
+        type: Sequelize.ENUM('0', '1', '2'),
       },
       createdAt: {
         allowNull: false,

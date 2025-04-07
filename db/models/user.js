@@ -101,9 +101,9 @@ const user = sequelize.define('user', {
   confirm_password: {
     type: DataTypes.VIRTUAL,
     set(value) {
-      if (this.password_hash.length < 7) {
+      if (this.password_hash.length < 5) {
         throw new AppError(
-          'Password length must be greater than 7',
+          'Password length must be greater than 5',
           400
         );
       }

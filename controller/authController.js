@@ -13,7 +13,7 @@ const generateToken = (payload) => {
 const signup = catchAsync(async (req, res, next) => {
     const body = req.body;
 
-    if (!['1', '0'].includes(body.role)) {
+    if (!['0', '1', '2'].includes(body.role)) {
         throw new AppError('Invalid role', 400);
     }
 

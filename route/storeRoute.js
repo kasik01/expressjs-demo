@@ -9,7 +9,7 @@ router
 
 router
     .route('/:id')
-    .get(authentication, restrictTo('1'), getStoreById)
+    .get(authentication, restrictTo('1', '2'), getStoreById)
     .patch(authentication, restrictTo('1'), updateStore)
     .delete(authentication, restrictTo('1'), deleteStore);
 
